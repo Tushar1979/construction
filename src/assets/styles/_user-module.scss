@@ -1,0 +1,33 @@
+.user-module{
+    border-radius: 15px;
+  
+}
+
+.errorMsg{
+    color: red;
+}
+.pd-box{
+    background: #f9f9f9;
+    margin: 30px;
+    .form-group{
+        align-items: center;
+        label.col-form-label {
+            padding: 0 ;
+            margin-bottom: 0;
+            min-width: 170px;
+            font-weight: 500;
+            font-family: "Ubuntu", sans-serif;
+            font-size: 16px;
+        }
+    }
+    .disp-text{
+        display: flex;
+        align-items: flex-start;
+        span{
+            display: block;
+        }
+    }
+    .card .card-title{
+        font-size: 20px;
+    }
+}
