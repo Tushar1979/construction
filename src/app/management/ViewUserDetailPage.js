@@ -2,7 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Form } from 'react-bootstrap'
 import { getOneUserApi } from '../../api/getOneUserApi';
+import ReactImageUploading from 'react-images-uploading';
+import profileImg from '../../assets/images/profile.png'
+
 const ViewUserDetailPage = () => {
+  const [images, setImages] = useState([{ data_url: profileImg }]);
+  const onChange = (imageList, addUpdateIndex) => {
+    console.log(imageList, addUpdateIndex);
+    setImages(imageList);
+  };
 
   let { id } = useParams();
   const [userOneData, setUserOneData] = useState({})
@@ -17,7 +25,7 @@ const ViewUserDetailPage = () => {
     const result = await getOneUserApi(id);
     setUserOneData(result.data)
   }
-  
+
   console.log(userOneData)
 
 
@@ -26,80 +34,115 @@ const ViewUserDetailPage = () => {
       <div className="card pd-box">
         <div className="card-body">
           <h4 className="card-title mb-4">User Detail </h4>
+          <div className="profile-pic">
+            <ReactImageUploading
+              value={images}
+              onChange={onChange}
+              dataURLKey="data_url"
+              acceptType={['jpg', 'gif', 'png']}
+            >
+              {
+                ({
+                  imageList,
+                  onImageUpdate,
+                  onImageRemove,
+                }) => (
+                  <div className="uploader__container">
+                    <img
+                      src={imageList[0]['data_url']}
+                      alt=""
+                      width="100"
+                      height="100"
+                    />
+                    <div className="imguplode_btn-wrapper">
+                      <button className='updateBtn'
+                        onClick={() => onImageUpdate(0)}>
+                        <i className='mdi mdi-camera'></i>
+                      </button>
+                      {profileImg == imageList[0]['data_url'] ? '' :
+                        <button className='removeBtn'
+                          onClick={() => setImages([{ data_url: profileImg }])}>
+                          <i className="mdi mdi-close"></i>
+                        </button>}
+                    </div>
+                  </div>
+                )
+              }
+            </ReactImageUploading>
+          </div>
           <form className="form-sample  ml-2">
             {/* <p className="card-description"> Personal info </p> */}
             <div className="row">
               <div className="col-md-6">
-    
 
-              <Form.Group className="row">
-                    <div className='col-sm-4 disp-text'>
-                        <label className=" col-form-label">Name</label>
-                        <span>:</span>
-                    </div>
-                   
-                    <div className="col-sm-8">
-                    {userOneData.name} 
-                    </div>
-                  </Form.Group>
+                <Form.Group className="row">
+                  <div className='col-sm-4 disp-text'>
+                    <label className=" col-form-label">Name</label>
+                    {/* <span>:</span> */}
+                  </div>
+
+                  <div className="col-sm-8">
+                    {userOneData.name}
+                  </div>
+                </Form.Group>
 
 
               </div>
               <div className="col-md-6">
 
-              <Form.Group className="row">
-                    <div className='col-sm-4 disp-text'>
-                        <label className=" col-form-label">Contact Number</label>
-                        <span>:</span>
-                    </div>
-                   
-                    <div className="col-sm-8">
-                    {userOneData.contact} 
-                    </div>
-                  </Form.Group>
+                <Form.Group className="row">
+                  <div className='col-sm-4 disp-text'>
+                    <label className=" col-form-label">Contact Number</label>
+                    {/* <span>:</span> */}
+                  </div>
+
+                  <div className="col-sm-8">
+                    {userOneData.contact}
+                  </div>
+                </Form.Group>
               </div>
             </div>
             <div className="row">
               <div className="col-md-6">
-              <Form.Group className="row">
-                    <div className='col-sm-4 disp-text'>
-                        <label className=" col-form-label">Email </label>
-                        <span>:</span>
-                    </div>
-                   
-                    <div className="col-sm-8">
-                    {userOneData.email} 
-                    </div>
-                  </Form.Group>
+                <Form.Group className="row">
+                  <div className='col-sm-4 disp-text'>
+                    <label className=" col-form-label">Email </label>
+                    {/* <span>:</span> */}
+                  </div>
+
+                  <div className="col-sm-8">
+                    {userOneData.email}
+                  </div>
+                </Form.Group>
 
               </div>
               <div className="col-md-6">
 
-              <Form.Group className="row">
-                    <div className='col-sm-4 disp-text'>
-                        <label className=" col-form-label">Role </label>
-                        <span>:</span>
-                    </div>
-                   
-                    <div className="col-sm-8">
+                <Form.Group className="row">
+                  <div className='col-sm-4 disp-text'>
+                    <label className=" col-form-label">Role </label>
+                    {/* <span>:</span> */}
+                  </div>
+
+                  <div className="col-sm-8">
                     {userOneData.designation}
-                    </div>
-                  </Form.Group>
+                  </div>
+                </Form.Group>
 
               </div>
             </div>
             <div className="row">
               <div className="col-md-6">
-              <Form.Group className="row">
-                    <div className='col-sm-4 disp-text'>
-                        <label className=" col-form-label">Address </label>
-                        <span>:</span>
-                    </div>
-                   
-                    <div className="col-sm-8">
+                <Form.Group className="row">
+                  <div className='col-sm-4 disp-text'>
+                    <label className=" col-form-label">Address </label>
+                    {/* <span>:</span> */}
+                  </div>
+
+                  <div className="col-sm-8">
                     {userOneData.address}
-                    </div>
-                  </Form.Group>
+                  </div>
+                </Form.Group>
               </div>
             </div>
             {/* <button type="button" className="btn btn-gradient-info btn-rounded btn-fw  text-white text-decoration-none" onClick={handleAddUserApiCall}>  Add User</button> */}

@@ -3,19 +3,20 @@ import { Form } from 'react-bootstrap';
 import { addUserApi } from '../../api/postAddUserApi';
 import { getRolesApi } from '../../api/getRolesApi';
 import { useSelector } from "react-redux";
-import { useHistory } from 'react-router-dom';
-const AddUser = () => {
+import { useHistory, useLocation } from 'react-router-dom';
+import AddProjectPhase from '../projectPhase/AddProjectPhase';
+const AddUser = (props) => {
   const history = useHistory();
   const initialValues = {
-    "name": '',
+    "first_name": '',
+    "last_name": '',
     "contact": '',
+    "alternate_contact": '',
     "email": '',
     "password": '',
     "designation": "",
     "level": "",
     "address": '',
-    
-
   }
 
   const [userRolesData, setUserRolesData] = useState([])
@@ -24,6 +25,7 @@ const AddUser = () => {
   const [formErrors, setFormErrors] = useState({})
   const [isSubmit, setIsSubmit] = useState(false)
   const [flag, setFlag] = useState(false)
+  const [display, setdisplay] = useState(false)
 
   const userDetail = useSelector((state) => state.home.userDetail);
   // console.log(count.userid)
@@ -52,21 +54,21 @@ const AddUser = () => {
 
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       console.log(formValues)
-      
-      
+
+
     }
   }, [formErrors])
 
 
   const dataSubmit = async () => {
     console.log(data.level)
-    formValues.level=data.level
+    formValues.level = data.level
     const result = await addUserApi(formValues)
     if (result?.status) {
 
       console.log(result), "yess"
 
-     
+
       setFlag(true)
 
     }
@@ -135,115 +137,326 @@ const AddUser = () => {
 
     return errors;
   }
+  const location = useLocation()
+  const fromNotifications = location?.state
+  console.log(fromNotifications, " link props")
+  // const  fromNotifications  =
+  //   (props.location && props.location.state) || {};
+  // console.log(props.location.state," link props")
+
+
 
 
   return (
-    <div>
+    <div className='container'>
       <div className="col-12 grid-margin">
         <div className="card">
           <div className="card-body">
             <h4 className="card-title">Add User</h4>
-            <form className="form-sample" onSubmit={handleSubmit}>
-              {/* <p className="card-description"> Personal info </p> */}
-              <div className="row">
-                <div className="col-md-6">
-                  <Form.Group className="row">
-                    <label className="col-sm-3 col-form-label">Name</label>
-                    <div className="col-sm-9">
-                      <Form.Control
-                        type="text"
-                        placeholder="Enter your User Name"
-                        name="name"
-                        value={formValues?.name}
-                        onChange={handleChange}
-                      />
-                      <p className="errorMsg">{formErrors.name}</p>
+            {
+              fromNotifications ?
+                <form className="form-sample" onSubmit={handleSubmit}>
+                  {/* <p className="card-description"> Personal info </p> */}
+                  <div className="row">
+                    <div className="col-md-6">
+                      <Form.Group>
+                        <label className="col-form-label">First Name</label>
+                        <div>
+                          <Form.Control
+                            type="text"
+                            placeholder="Enter your First Name"
+                            name="first_name"
+                            value={formValues?.first_name}
+                            onChange={handleChange}
+                          />
+                          <p className="errorMsg">{formErrors.first_name}</p>
+                        </div>
+                      </Form.Group>
                     </div>
-                  </Form.Group>
-                </div>
-                <div className="col-md-6">
-                  <Form.Group className="row">
-                    <label className="col-sm-3 col-form-label">Contact Number</label>
-                    <div className="col-sm-9">
-                      <Form.Control
-                        type="text"
-                        placeholder="Enter your User Number"
-                        name="contact"
-                        value={formValues?.contact}
-                        onChange={handleChange}
+                    <div className="col-md-6">
+                      <Form.Group>
+                        <label className="col-form-label">Last Name</label>
+                        <div >
+                          <Form.Control
+                            type="text"
+                            placeholder="Enter your Last Name"
+                            name="name"
+                            value={formValues?.last_name}
+                            onChange={handleChange}
+                          />
+                          <p className="errorMsg">{formErrors.last_name}</p>
+                        </div>
+                      </Form.Group>
+                    </div>
+                    <div className="col-md-6">
+                      <Form.Group>
+                        <label className="col-form-label">Contact Number</label>
+                        <div >
+                          <Form.Control
+                            type="text"
+                            placeholder="Enter your User Number"
+                            name="contact"
+                            value={formValues?.contact}
+                            onChange={handleChange}
 
-                      />
-                      <p className="errorMsg">{formErrors.contact}</p>
+                          />
+                          <p className="errorMsg">{formErrors.contact}</p>
+
+                        </div>
+                      </Form.Group>
+                    </div>
+                    <div className="col-md-6">
+                      <Form.Group>
+                        <label className="col-form-label">Alternate Contact Number</label>
+                        <div >
+                          <Form.Control
+                            type="text"
+                            placeholder="Enter your Alternate Number"
+                            name="contact"
+                            value={formValues?.alternate_contact}
+                            onChange={handleChange}
+
+                          />
+                          <p className="errorMsg">{formErrors.alternate_contact}</p>
+
+                        </div>
+                      </Form.Group>
+                    </div>
+                    <div className="col-md-6">
+                      {/* <Form.Group>
+                        <label className="col-form-label">Role</label>
+                        <div className="col-sm-9 p-0">
+                          <select className="form-control" name='designation' onChange={handleChange} >
+                            <option>Select your option</option>
+                            {userRolesData.map(function (value) {
+                              return <option key={value.id}>{value.rolename}</option>
+                            })}
+                          </select>
+                          <p className="errorMsg">{formErrors.designation}</p>
+                        </div>
+                      </Form.Group> */}
+                      <Form.Group>
+                        <label className="col-form-label">Email</label>
+                        <div >
+                          <Form.Control
+                            type="text"
+                            placeholder="Enter your User Email"
+                            name="email"
+                            value={formValues?.email}
+                            onChange={handleChange}
+                          />
+                          <p className="errorMsg">{formErrors.email}</p>
+                        </div>
+                      </Form.Group>
 
                     </div>
-                  </Form.Group>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-md-6">
-                  <Form.Group className="row">
-                    <label className="col-sm-3 col-form-label">Email</label>
-                    <div className="col-sm-9">
-                      <Form.Control
-                        type="text"
-                        placeholder="Enter your User Email"
-                        name="email"
-                        value={formValues?.email}
-                        onChange={handleChange}
-                      />
-                      <p className="errorMsg">{formErrors.email}</p>
+                    <div className="col-md-6">
+                      <Form.Group>
+                        <label className="col-form-label">Password</label>
+                        <div >
+                          <Form.Control
+                            type="password"
+                            placeholder="Enter your User Password"
+                            name="password"
+                            value={formValues?.password}
+                            onChange={handleChange}
+                          />
+                          <p className="errorMsg">{formErrors.password}</p>
+                        </div>
+                      </Form.Group>
                     </div>
-                  </Form.Group>
-                </div>
-                <div className="col-md-6">
-                  <Form.Group className="row">
-                    <label className="col-sm-3 col-form-label">Role</label>
-                    <div className="col-sm-9">
-                      <select className="form-control" name='designation' onChange={handleChange} >
-                        <option>Select your option</option>
-                        {userRolesData.map(function (value) {
-                          return <option key={value.id}>{value.rolename}</option>
-                        })}
-                      </select>
-                      <p className="errorMsg">{formErrors.designation}</p>
+                    <div className="col-md-6">
+                      <Form.Group>
+                        <label className="col-form-label">Role</label>
+                        <div>
+                          <Form.Control
+                            type="text"
+                            placeholder="Add Role"
+                            name="designation"
+                            value={formValues?.designation}
+                            onChange={handleChange}
+                          />
+                          <p className="errorMsg">{formErrors.rolename}</p>
+                        </div>
+                      </Form.Group>
                     </div>
-                  </Form.Group>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-md-6">
-                  <Form.Group className="row">
-                    <label className="col-sm-3 col-form-label">Password</label>
-                    <div className="col-sm-9">
-                      <Form.Control
-                        type="password"
-                        placeholder="Enter your User Password"
-                        name="password"
-                        value={formValues?.password}
-                        onChange={handleChange}
-                      />
-                      <p className="errorMsg">{formErrors.password}</p>
+                    <div className="col-md-6">
+                      <button className="btn btn-gradient-info btn-rounded btn-fw" type='submit' value='submit' >Add User</button>
                     </div>
-                  </Form.Group>
-                </div>
-                <div className="col-md-6">
-                  <Form.Group className="row">
-                    <label className="col-sm-3 col-form-label">Address</label>
-                    <div className="col-sm-9">
-                      <Form.Control
-                        type="text"
-                        placeholder="Enter your User Address"
-                        name="address"
-                        value={formValues?.address}
-                        onChange={handleChange}
-                      />
-                      <p className="errorMsg">{formErrors.address}</p>
+
+
+                    <div className="col-md-12">
+                      <Form.Group>
+                        <label className="col-form-label">Address</label>
+                        <div >
+                          <Form.Control
+                            type="text"
+                            placeholder="Enter your User Address"
+                            name="address"
+                            value={formValues?.address}
+                            onChange={handleChange}
+                          />
+                          <p className="errorMsg">{formErrors.address}</p>
+                        </div>
+                      </Form.Group>
                     </div>
-                  </Form.Group>
-                </div>
-              </div>
-              <button className="btn btn-gradient-info btn-rounded btn-fw" type='submit' value='submit' >Add User</button>
-            </form>
+                  </div>
+
+                  <div className="add-project-btns">
+                    <button className="btn btn-gradient-info btn-rounded btn-fw" type='submit' value='submit' >Save</button>
+                    <button className="btn btn-gradient-info btn-rounded btn-fw" style={{ marginLeft: "50px" }} onClick={() => setdisplay(true)} type='submit' value='submit' >Next</button>
+                  </div>
+                  {display && <AddProjectPhase display={display} setdisplay={setdisplay} ></AddProjectPhase>}
+
+                </form> :
+
+                <form className="form-sample" onSubmit={handleSubmit}>
+                  {/* <p className="card-description"> Personal info </p> */}
+                  <div className="row">
+                    <div className="col-md-6">
+                      <Form.Group>
+                        <label className="col-form-label">First Name</label>
+                        <div>
+                          <Form.Control
+                            type="text"
+                            placeholder="Enter your First Name"
+                            name="first_name"
+                            value={formValues?.first_name}
+                            onChange={handleChange}
+                          />
+                          <p className="errorMsg">{formErrors.first_name}</p>
+                        </div>
+                      </Form.Group>
+                    </div>
+                    <div className="col-md-6">
+                      <Form.Group>
+                        <label className="col-form-label">Last Name</label>
+                        <div >
+                          <Form.Control
+                            type="text"
+                            placeholder="Enter your Last Name"
+                            name="name"
+                            value={formValues?.last_name}
+                            onChange={handleChange}
+                          />
+                          <p className="errorMsg">{formErrors.last_name}</p>
+                        </div>
+                      </Form.Group>
+                    </div>
+                    <div className="col-md-6">
+                      <Form.Group>
+                        <label className="col-form-label">Contact Number</label>
+                        <div >
+                          <Form.Control
+                            type="text"
+                            placeholder="Enter your User Number"
+                            name="contact"
+                            value={formValues?.contact}
+                            onChange={handleChange}
+
+                          />
+                          <p className="errorMsg">{formErrors.contact}</p>
+
+                        </div>
+                      </Form.Group>
+                    </div>
+                    <div className="col-md-6">
+                      <Form.Group>
+                        <label className="col-form-label">Alternate Contact Number</label>
+                        <div >
+                          <Form.Control
+                            type="text"
+                            placeholder="Enter your Alternate Number"
+                            name="contact"
+                            value={formValues?.alternate_contact}
+                            onChange={handleChange}
+
+                          />
+                          <p className="errorMsg">{formErrors.alternate_contact}</p>
+
+                        </div>
+                      </Form.Group>
+                    </div>
+                    {/* <div className="col-md-6">
+                      <Form.Group>
+                        <label className="col-form-label">Role</label>
+                        <div className="col-sm-9 p-0">
+                          <select className="form-control" name='designation' onChange={handleChange} >
+                            <option>Select your option</option>
+                            {userRolesData.map(function (value) {
+                              return <option key={value.id}>{value.rolename}</option>
+                            })}
+                          </select>
+                          <p className="errorMsg">{formErrors.designation}</p>
+                        </div>
+                      </Form.Group>
+                      <Form.Group>
+                        <label className="col-form-label">Role</label>
+                        <div className="col-sm-9 p-0">
+                          <Form.Control
+                            type="text"
+                            placeholder="Add Role"
+                            name="designation"
+                            value={formValues?.designation}
+                            onChange={handleChange}
+                          />
+                          <p className="errorMsg">{formErrors.rolename}</p>
+                        </div>
+                      </Form.Group>
+
+                    </div> */}
+                    <div className="col-md-6">
+                      <Form.Group>
+                        <label className="col-form-label">Email</label>
+                        <div >
+                          <Form.Control
+                            type="text"
+                            placeholder="Enter your User Email"
+                            name="email"
+                            value={formValues?.email}
+                            onChange={handleChange}
+                          />
+                          <p className="errorMsg">{formErrors.email}</p>
+                        </div>
+                      </Form.Group>
+                    </div>
+                    <div className="col-md-6">
+                      <Form.Group>
+                        <label className="col-form-label">Password</label>
+                        <div >
+                          <Form.Control
+                            type="password"
+                            placeholder="Enter your User Password"
+                            name="password"
+                            value={formValues?.password}
+                            onChange={handleChange}
+                          />
+                          <p className="errorMsg">{formErrors.password}</p>
+                        </div>
+                      </Form.Group>
+                    </div>
+                    <div className="col-md-12">
+                      <Form.Group>
+                        <label className="col-form-label">Address</label>
+                        <div >
+                          <Form.Control
+                            type="text"
+                            placeholder="Enter your User Address"
+                            name="address"
+                            value={formValues?.address}
+                            onChange={handleChange}
+                          />
+                          <p className="errorMsg">{formErrors.address}</p>
+                        </div>
+                      </Form.Group>
+                    </div>
+                  </div>
+
+
+                  <button className="btn btn-gradient-info btn-rounded btn-fw" type='submit' value='submit' >Add User</button>
+                </form>
+            }
+
           </div>
         </div>
       </div>

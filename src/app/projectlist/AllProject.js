@@ -1,17 +1,18 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { AgGridReact } from 'ag-grid-react';
-import { Link,useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import CustomizeModal from '../component/CustomizeModal';
-import EditProject from '../project/EditProject'; 
+import EditProject from '../project/EditProject';
 import { getProjectApi } from '../../api/getProjectApi';
 import { deleteProjectApi } from '../../api/deleteProjectApi'
 import { getOneProjectApi } from '../../api/getOneProjectApi';
 import { useSelector } from "react-redux";
+import { GridOptionsWrapper } from 'ag-grid-community';
 
 const AllProject = () => {
-  const userDetail = useSelector((state)=>state.home.userDetail);
+  const userDetail = useSelector((state) => state.home.userDetail);
   const history = useHistory();
   const [show, setShow] = useState(false);
   const [projectid, setProjectid] = useState('')
@@ -47,44 +48,52 @@ const AllProject = () => {
 
   const [columnDefs] = useState([
     // { headerName: 'Detail', field: 'Detail', cellRenderer: ViewDetailProjectPage, filter: false },
-    { headerName: 'Actions', field: 'Actions', cellRenderer: TabelAction, filter: false },
-    { headerName: 'Project Id', field: 'id' },
-    { headerName: 'Project Name', field: 'projectname' },
-    { headerName: 'Estimated Cost', field: 'estimatedcost' ,hide:hideCol()},
-    { headerName: 'Start Date', field: 'startdate' },
-    { headerName: 'End Date', field: 'enddate' },
+    { headerName: 'Project Id', field: 'id', width: 120, resizable: true, filter: false, width: 110 },
+    { headerName: 'Project Name', field: 'projectname', resizable: true, width: 165 },
+    { headerName: 'Estimated Cost', field: 'estimatedcost', hide: hideCol(), resizable: true, width: 155 },
+    { headerName: 'Start Date', field: 'startdate', resizable: true, width: 155 },
+    { headerName: 'End Date', field: 'enddate', resizable: true, width: 155 },
 
-    { headerName: 'Project Manager', field: 'projectmanager' },
-    { headerName: 'Principal Arcitect', field: 'principalarchitect' },
-    { headerName: 'Project Address', field: 'projectaddress' },
-    { headerName: 'Project Owner', field: 'owner',hide:hideCol() },
-    { headerName: 'Owner Contact Number', field: 'ownercontact',hide:hideCol() },
-    { headerName: 'Owner Email', field: 'owneremail',hide:hideCol() },
+    { headerName: 'Project Manager', field: 'projectmanager', width: 160 },
+    { headerName: 'Principal Arcitect', field: 'principalarchitect', width: 165 },
+    { headerName: 'Project Address', field: 'projectaddress', width: 165 },
+    { headerName: 'Project Owner', field: 'owner', hide: hideCol(), width: 155 },
+    { headerName: 'Owner Contact Number', field: 'ownercontact', hide: hideCol(), width: 165 },
+    { headerName: 'Owner Email', field: 'owneremail', hide: hideCol(), width: 200 },
+    { headerName: 'Actions', field: 'Actions', cellRenderer: TabelAction, filter: false, width: 100 },
 
 
   ]);
+
+  GridOptionsWrapper.rowClass = 'my-green-class';
+
+  GridOptionsWrapper.getRowClass = function (params) {
+    if (params.node.rowIndex % 2 === 0) {
+      return 'my-shaded-effect';
+    }
+  }
 
   const defaultColDef = useMemo(() => ({
     sortable: true,
     filter: true
   }))
 
-    
-  function hideCol(){
-    var x
-     (userDetail?.designation === "Admin"||userDetail?.designation === "Superadmin")?  x=false:x=true
- 
-     return x;
-    }
-   
-    const onRowClicked=(p)=>{
 
-      if(p.value !== undefined){
-        history.push(`/ProjectDetailPage/${p.data.id}`)
-       
-      }
-    
-    }  
+  function hideCol() {
+    var x
+    (userDetail?.designation === "Admin" || userDetail?.designation === "Superadmin") ? x = false : x = true
+
+    return x;
+  }
+
+  const onRowClicked = (p) => {
+
+    if (p.value !== undefined) {
+      history.push(`/ProjectDetailPage/${p.data.id}`)
+
+    }
+
+  }
 
   return (<>
     <div>

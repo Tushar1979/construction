@@ -36,7 +36,7 @@ const AddProject = () => {
         const result = await addProjectApi(formValues)
         if (result?.status) {
           console.log(result), "yess"
-    
+
           history.push("/");
         }
         else {
@@ -110,6 +110,9 @@ const AddProject = () => {
     }
     return errors;
   }
+  // const onNextpage = () => {
+  //   history.push("/management/AddUser", {state: {item: "yes"}})
+  // }
 
   return (<>
     <div className='add-project'>
@@ -121,9 +124,9 @@ const AddProject = () => {
               <p className="card-description">  </p>
               <div className="row">
                 <div className="col-md-6">
-                  <Form.Group className="row">
-                    <label className="col-sm-3 col-form-label">Project Name</label>
-                    <div className="col-sm-9">
+                  <Form.Group>
+                    <label className=" col-form-label">Project Name</label>
+                    <div className="col-sm-9 p-0">
                       <Form.Control
                         type="text"
                         placeholder="Enter Project Name"
@@ -136,9 +139,9 @@ const AddProject = () => {
                   </Form.Group>
                 </div>
                 <div className="col-md-6">
-                  <Form.Group className="row">
-                    <label className="col-sm-3 col-form-label">Project Address</label>
-                    <div className="col-sm-9">
+                  <Form.Group >
+                    <label className="col-form-label">Project Address</label>
+                    <div className="col-sm-9 p-0">
                       <Form.Control
                         type="text"
                         placeholder="Enter Project Address"
@@ -155,9 +158,9 @@ const AddProject = () => {
 
               <div className="row">
                 <div className="col-md-6">
-                  <Form.Group className="row">
-                    <label className="col-sm-3 col-form-label">Owner Name</label>
-                    <div className="col-sm-9">
+                  <Form.Group>
+                    <label className="col-form-label">Owner Name</label>
+                    <div className="col-sm-9 p-0">
                       <Form.Control
                         type="text"
                         placeholder="Enter Owner Name"
@@ -170,9 +173,9 @@ const AddProject = () => {
                   </Form.Group>
                 </div>
                 <div className="col-md-6">
-                  <Form.Group className="row">
-                    <label className="col-sm-3 col-form-label">Owner Contact </label>
-                    <div className="col-sm-9">
+                  <Form.Group>
+                    <label className="col-form-label">Owner Contact </label>
+                    <div className="col-sm-9 p-0">
                       <Form.Control
                         type="text"
                         placeholder="Enter Owner Mobile Number"
@@ -187,9 +190,9 @@ const AddProject = () => {
               </div>
               <div className="row">
                 <div className="col-md-6">
-                  <Form.Group className="row">
-                    <label className="col-sm-3 col-form-label"> Email</label>
-                    <div className="col-sm-9">
+                  <Form.Group>
+                    <label className="col-form-label"> Email</label>
+                    <div className="col-sm-9 p-0">
                       <Form.Control
                         type="text"
                         placeholder="Enter Owner Name"
@@ -202,9 +205,9 @@ const AddProject = () => {
                   </Form.Group>
                 </div>
                 <div className="col-md-6">
-                  <Form.Group className="row">
-                    <label className="col-sm-3 col-form-label">City</label>
-                    <div className="col-sm-9">
+                  <Form.Group >
+                    <label className=" col-form-label">City</label>
+                    <div className="col-sm-9 p-0">
                       <Form.Control
                         type="text"
                         placeholder="Enter Owner Name"
@@ -219,9 +222,9 @@ const AddProject = () => {
               </div>
               <div className="row">
                 <div className="col-md-6">
-                  <Form.Group className="row">
-                    <label className="col-sm-3 col-form-label">Start Date</label>
-                    <div className="col-sm-9">
+                  <Form.Group>
+                    <label className="col-form-label">Start Date</label>
+                    <div className="col-sm-9 p-0">
                       <Form.Control
                         type="date"
                         placeholder="Enter startdate"
@@ -236,9 +239,9 @@ const AddProject = () => {
                   </Form.Group>
                 </div>
                 <div className="col-md-6">
-                  <Form.Group className="row">
-                    <label className="col-sm-3 col-form-label">End Date</label>
-                    <div className="col-sm-9">
+                  <Form.Group>
+                    <label className="col-form-label">End Date</label>
+                    <div className="col-sm-9 p-0">
                       <Form.Control
                         type="date"
                         placeholder="Enter enddate"
@@ -255,9 +258,9 @@ const AddProject = () => {
               </div>
               <div className="row">
                 <div className="col-md-6">
-                  <Form.Group className="row">
-                    <label className="col-sm-3 col-form-label">Estimated Cost</label>
-                    <div className="col-sm-9">
+                  <Form.Group>
+                    <label className="col-form-label">Estimated Cost</label>
+                    <div className="col-sm-9 p-0">
                       <Form.Control
                         type="text"
                         placeholder="Enter Estimated Cost"
@@ -270,13 +273,26 @@ const AddProject = () => {
                   </Form.Group>
                 </div>
               </div>
-              <button className="btn btn-gradient-info btn-rounded btn-fw" type="submit" value="submit">Submit</button>
+              <div className="add-project-btns">
+                <button className="btn btn-gradient-info btn-rounded btn-fw" type="submit" value="submit">Save</button>
+                <button className="btn btn-gradient-info btn-rounded btn-fw" style={{ marginLeft: "50px" }} type="submit" value="submit">Submit Draft</button>
+                <Link
+                  to={{
+                    pathname: "/management/AddUser",
+                    state: {
+                      fromNotifications: true,
+                    },
+                  }}
+                >
+                  <button className="btn btn-gradient-info btn-rounded btn-fw" style={{ marginLeft: "50px" }} type="submit" value="submit">Next</button>
+                </Link>
+              </div>
             </Form>
           </div>
         </div>
       </div>
     </div>
-  
+
   </>
   )
 }

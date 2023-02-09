@@ -100,12 +100,12 @@ const Usermanagement = () => {
 
   const [columnDefs] = useState([
   
-    { headerName: 'Actions', field: 'Actions', cellRenderer: TabelAction, filter: false, },
-    { headerName: 'User Id', field: 'userid' },
+    { headerName: 'User Id', field: 'userid', width: 100 },
     { headerName: 'User Name', field: 'name' },
     { headerName: 'User Role', field: 'designation' },
-    { headerName: 'User Email', field: 'email' },
-    { headerName: 'isActive', field: 'isactive' }
+    { headerName: 'User Email', field: 'email', width: 250 },
+    { headerName: 'isActive', field: 'isactive', width: 120 },
+    { headerName: 'Actions', field: 'Actions', cellRenderer: TabelAction, filter: false },
 
   ]);
 
@@ -117,10 +117,7 @@ const Usermanagement = () => {
   const defaultColDef = useMemo(() => ({
     sortable: true,
     filter: true,
-    flex:1
-
-
-
+   
   }))
   
   const onRowClicked=(p)=>{
@@ -151,6 +148,7 @@ const Usermanagement = () => {
                   rowData={rowData || []}
                   columnDefs={columnDefs}
                   defaultColDef={defaultColDef}
+                  paginationAutoPageSize={true}
                   pagination={true}
                   onCellClicked={onRowClicked}
 

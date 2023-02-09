@@ -2,6 +2,10 @@
 
 .form-group {
   margin-bottom: 1.5rem;
+  &.form-box{
+    display: flex;
+    column-gap: 15px;
+  }
 }
 
 .input-group-append,
@@ -59,7 +63,7 @@ select {
     font-size: $default-font-size;
     line-height: 1;
     vertical-align: top;
-    margin-bottom: .5rem;
+    // margin-bottom: .5rem;
   }
   &.has-danger {
     .form-control {

@@ -168,8 +168,8 @@ const ProjectDetailPage = () => {
                   <div className="col-md-6">
                     <Form.Group className="row">
                       <div className='col-sm-4 disp-text'>
-                        <label className=" col-form-label">Project Name</label>
-                        <span>:</span>
+                        <label className=" col-form-label">Project Name </label>
+                        {/* <span>:</span> */}
                       </div>
 
                       <div className="col-sm-8">
@@ -181,7 +181,7 @@ const ProjectDetailPage = () => {
                     <Form.Group className="row">
                       <div className='col-sm-4 disp-text'>
                         <label className=" col-form-label">Project Address</label>
-                        <span>:</span>
+                        {/* <span>:</span> */}
                       </div>
                       <div className="col-sm-8">
                         {projectonedata.projectaddress}
@@ -195,7 +195,7 @@ const ProjectDetailPage = () => {
                       <Form.Group className="row">
                         <div className='col-sm-4 disp-text'>
                           <label className=" col-form-label">Owner Name</label>
-                          <span>:</span>
+                          {/* <span>:</span> */}
                         </div>
                         <div className="col-sm-8">
                           {projectonedata.owner}
@@ -204,9 +204,9 @@ const ProjectDetailPage = () => {
                     </div>
                     <div className="col-md-6">
                       <Form.Group className="row">
-                        <div className='col-sm-4 disp-text'>
+                        <div className='col-sm-4 '>
                           <label className=" col-form-label">Owner Contact No.</label>
-                          <span>:</span>
+                          {/* <span>:</span> */}
                         </div>
                         <div className="col-sm-8">
                           {projectonedata.ownercontact}
@@ -219,8 +219,8 @@ const ProjectDetailPage = () => {
                     <div className="col-md-6">
                       <Form.Group className="row">
                         <div className='col-sm-4 disp-text'>
-                          <label className=" col-form-label">Owner Email</label>
-                          <span>:</span>
+                          <label className=" col-form-label">Owner Email </label>
+                          {/* <span>:</span> */}
                         </div>
                         <div className="col-sm-8">
                           {projectonedata.owneremail}
@@ -231,7 +231,7 @@ const ProjectDetailPage = () => {
                       <Form.Group className="row">
                         <div className='col-sm-4 disp-text'>
                           <label className=" col-form-label">Estimated Cost</label>
-                          <span>:</span>
+                          {/* <span>:</span> */}
                         </div>
                         <div className="col-sm-8">
                           {projectonedata.estimatedcost}
@@ -243,8 +243,8 @@ const ProjectDetailPage = () => {
                   <div className="col-md-6">
                     <Form.Group className="row">
                       <div className='col-sm-4 disp-text'>
-                        <label className=" col-form-label">Start Date</label>
-                        <span>:</span>
+                        <label className=" col-form-label">Start Date </label>
+                        {/* <span>:</span> */}
                       </div>
                       <div className="col-sm-8">
                         {projectonedata.startdate}
@@ -254,8 +254,8 @@ const ProjectDetailPage = () => {
                   <div className="col-md-6">
                     <Form.Group className="row">
                       <div className='col-sm-4 disp-text'>
-                        <label className=" col-form-label">End Date</label>
-                        <span>:</span>
+                        <label className=" col-form-label">End Date </label>
+                        {/* <span>:</span> */}
                       </div>
                       <div className="col-sm-8">
                         {projectonedata.enddate}
@@ -267,8 +267,8 @@ const ProjectDetailPage = () => {
                   <div className="col-md-6">
                     <Form.Group className="row">
                       <div className='col-sm-4 disp-text'>
-                        <label className=" col-form-label">Principal Arcitect</label>
-                        <span>:</span>
+                        <label className=" col-form-label">Principal Arcitect </label>
+                        {/* <span>:</span> */}
                       </div>
                       <div className="col-sm-8">
                         {projectonedata.principalarchitect}
@@ -278,8 +278,8 @@ const ProjectDetailPage = () => {
                   <div className="col-md-6">
                     <Form.Group className="row">
                       <div className='col-sm-4 disp-text'>
-                        <label className=" col-form-label">Project Manager</label>
-                        <span>:</span>
+                        <label className=" col-form-label">Project Manager </label>
+                        {/* <span>:</span> */}
                       </div>
                       <div className="col-sm-8">
                         {projectonedata.projectmanager}
@@ -291,8 +291,8 @@ const ProjectDetailPage = () => {
                   <div className="col-md-6">
                     <Form.Group className="row">
                       <div className='col-sm-4 disp-text'>
-                        <label className=" col-form-label">City</label>
-                        <span>:</span>
+                        <label className=" col-form-label">City </label>
+                        {/* <span>:</span> */}
                       </div>
                       <div className="col-sm-8">
                         {projectonedata.city}
@@ -326,10 +326,10 @@ const ProjectDetailPage = () => {
                       <div className="card-body">
                         <h4 className="card-title">Assign User  </h4>
                         <div className='row'>
-                          <div className="col-md-3">
-                            <Form.Group className="row">
-                              <label className="col-sm-3 col-form-label">Role</label>
-                              <div className="col-sm-9">
+                          <div className="col-md-4">
+                            <Form.Group className='form-box'>
+                              <label className=" col-form-label">Role</label>
+                              <div>
                                 <select className="form-control" onChange={(e) => setDesignation(e.target.value)}>
                                   <option value="" disabled selected>Select your option</option>
                                   {userRolesData.map(function (value) {
@@ -339,10 +339,10 @@ const ProjectDetailPage = () => {
                               </div>
                             </Form.Group>
                           </div>
-                          <div className="col-md-3">
-                            <Form.Group className="row">
-                              <label className="col-sm-3 col-form-label">Name</label>
-                              <div className="col-sm-9">
+                          <div className="col-md-4">
+                            <Form.Group className='form-box'>
+                              <label className=" col-form-label">Name</label>
+                              <div>
                                 <select className="form-control"
                                   onChange={(e) => {
                                     const val = (e.target.value).split("___")
@@ -358,7 +358,7 @@ const ProjectDetailPage = () => {
                               </div>
                             </Form.Group>
                           </div>
-                          <div className="col-md-3">
+                          <div className="col-md-4">
                             <button type="button" className="btn btn-gradient-info  btn-fw  text-white text-decoration-none" onClick={() => handlePostAssignUserToProject(ProjectName)}> Assign User </button>
                           </div>
                         </div>

@@ -2,35 +2,43 @@ import React, { useState, useEffect } from 'react'
 import { Form } from 'react-bootstrap'
 import { useSelector } from "react-redux";
 import { editOwnProfileApi } from "../../api/putUpdateOwnProfile"
+import profileImg from '../../assets/images/profile.png'
+
 
 import { useHistory } from 'react-router-dom';
 
 import { getOneUserApi } from '../../api/getOneUserApi';
+import ReactImageUploading from 'react-images-uploading';
 
 const Profile = () => {
   let history = useHistory()
   const userDetail = useSelector((state) => state.home.userDetail);
-  
+
 
   // const initialValues = {
   //   "address": userDetail.address,
   //   "contact": userDetail.contact,
   // }
-  const [user,setUser]=useState(userDetail)
+  const [user, setUser] = useState(userDetail)
   const [userOneData, setUserOneData] = useState()
-  const [formValues, setFormValues] = useState( )
+  const [formValues, setFormValues] = useState()
   const [formErrors, setFormErrors] = useState({})
   const [isSubmit, setIsSubmit] = useState(false)
+  const [images, setImages] = useState([{ data_url: profileImg }]);
 
- 
+  const onChange = (imageList, addUpdateIndex) => {
+    console.log(imageList, addUpdateIndex);
+    setImages(imageList);
+  };
+
   useEffect(() => {
     handleGetOneUserApiCall()
   }, [])
 
-  useEffect(()=>{
+  useEffect(() => {
     setFormValues(userOneData)
     console.log(user)
-  },[userOneData])
+  }, [userOneData])
 
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
@@ -94,9 +102,9 @@ const Profile = () => {
     return errors;
   }
 
- 
 
- console.log(user?.id,user?.userid)
+
+  console.log(user?.id, user?.userid)
 
   return (
     <>
@@ -105,6 +113,42 @@ const Profile = () => {
           <div className="card">
             <div className="card-body">
               <h4 className="card-title">Update Profile</h4>
+              <div className="profile-pic">
+                <ReactImageUploading
+                  value={images}
+                  onChange={onChange}
+                  dataURLKey="data_url"
+                  acceptType={['jpg', 'gif', 'png']}
+                >
+                  {
+                    ({
+                      imageList,
+                      onImageUpdate,
+                      onImageRemove,
+                    }) => (
+                      <div className="uploader__container">
+                        <img
+                          src={imageList[0]['data_url']}
+                          alt=""
+                          width="100"
+                          height="100"
+                        />
+                        <div className="imguplode_btn-wrapper">
+                          <button className='updateBtn'
+                            onClick={() => onImageUpdate(0)}>
+                            <i className='mdi mdi-camera'></i>
+                          </button>
+                          {profileImg == imageList[0]['data_url'] ? '' :
+                            <button className='removeBtn'
+                              onClick={() => setImages([{ data_url: profileImg }])}>
+                              <i className="mdi mdi-close"></i>
+                            </button>}
+                        </div>
+                      </div>
+                    )
+                  }
+                </ReactImageUploading>
+              </div>
               <Form className="form-sample" onSubmit={handleSubmit}>
                 <p className="card-description">  </p>
                 <div className="row">

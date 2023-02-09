@@ -17,6 +17,8 @@
     text-transform: capitalize;
     font-weight: $font-weight-medium;
     font-size: 1.125rem;
+    border-bottom: 1px solid #e9ebec;
+    padding-bottom: 13px;
   }
   .card-subtitle {
     @extend .text-gray;
