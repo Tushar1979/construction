@@ -21,6 +21,8 @@ const ViewUserDetailPage = lazy(() => import('./management/ViewUserDetailPage'))
 const Login = lazy(() => import('./user-pages/Login'))
 const ForgetPassword = lazy(() => import('./user-pages/ForgetPassword'))
 const ResetPassword = lazy(() => import('./user-pages/ResetPassword'))
+const RolePermissions =lazy(()=>import('./permission/RolePermissions'))
+
 
 function AppRoutes() {
 
@@ -44,8 +46,12 @@ function AppRoutes() {
         <Route path="/projectlist/introuble"><Layout><InTrouble /></Layout></Route>
         <Route path="/projectlist/onhold"><Layout><OnHold /></Layout></Route>
         <Route path="/projectlist/ontrack"><Layout><OnTrack /></Layout></Route>
+<<<<<<< HEAD
         <Route path="/addphase"><Layout><AddProjectPhase /></Layout></Route>
 
+=======
+        <Route path="/RolePermissions" ><Layout><RolePermissions/></Layout></Route>
+>>>>>>> 52d8eca27695ccb2c35514a4dd9983efc9dba2f5
         {/* <Redirect to="/dashboard" /> */}
       </Switch>
     </Suspense>

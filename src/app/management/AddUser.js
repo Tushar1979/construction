@@ -5,6 +5,7 @@ import { getRolesApi } from '../../api/getRolesApi';
 import { useSelector } from "react-redux";
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import AddProjectPhase from '../projectPhase/AddProjectPhase';
+import { Link } from 'react-router-dom';
 const AddUser = (props) => {
   const history = useHistory();
   const initialValues = {
@@ -281,7 +282,9 @@ const AddUser = (props) => {
                       </Form.Group>
                     </div>
                     <div className="col-md-6">
-                      <button className="btn btn-gradient-info btn-rounded btn-fw" type='submit' value='submit' >Add User</button>
+                      <Link to="/RolePermissions">
+                      <button className="btn btn-gradient-info btn-rounded btn-fw mt-5" type='submit' value='submit' >Add User</button>
+                      </Link>
                     </div>
 
 
