@@ -71,7 +71,8 @@ const ProjectPhase = (props) => {
         <div>
             <div className='m-3 text-right'>
 
-                {userDetail?.designation === "Admin" || userDetail?.designation === "Superadmin" ? <button type="button" className="btn btn-gradient-info  btn-fw  text-white text-decoration-none" onClick={() => setdisplay(true)}> Add Phase </button> : ""}
+                {userDetail?.designation === "Admin" || userDetail?.designation === "Superadmin" ? 
+                <button type="button" className="btn btn-gradient-info  btn-fw  text-white text-decoration-none" onClick={() => setdisplay(true)}> Add Phase </button> : ""}
 
             </div>
 

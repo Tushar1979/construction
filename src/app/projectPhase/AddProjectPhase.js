@@ -97,13 +97,13 @@ const AddProjectPhase = (props) => {
  
     return (
         <>
-            <EditableModal
+            {/* <EditableModal
                 show={props.display}
                 handleClose={() => props.setdisplay(false)}
                 handleShow={() => props.setdisplay(true)}
             //   onClick={()=>handleEditUserApiCall(userid)}
             //   Action="Save"
-            >
+            > */}
                  <div>
                     <div className="col-12 grid-margin">
                         <div className="card">
@@ -113,9 +113,9 @@ const AddProjectPhase = (props) => {
 
                                     <div className="row">
                                         <div className="col-md-6">
-                                            <Form.Group className="row">
-                                                <label className="col-sm-3 col-form-label">Phase Name</label>
-                                                <div className="col-sm-9">
+                                            <Form.Group >
+                                                <label className=" col-form-label">Phase Name</label>
+                                                <div >
                                                     <Form.Control
                                                         type="text"
                                                         placeholder="Enter your Phase Name"
@@ -128,9 +128,9 @@ const AddProjectPhase = (props) => {
                                             </Form.Group>
                                         </div>
                                         <div className="col-md-6">
-                                            <Form.Group className="row">
-                                                <label className="col-sm-3 col-form-label">Phase Weightage</label>
-                                                <div className="col-sm-9">
+                                            <Form.Group >
+                                                <label className=" col-form-label">Phase Weightage</label>
+                                                <div >
                                                     <Form.Control
                                                         type="text"
                                                         placeholder="Enter your Phase Weightage"
@@ -145,9 +145,9 @@ const AddProjectPhase = (props) => {
                                     </div>
                                     <div className="row">
                                         <div className="col-md-6">
-                                            <Form.Group className="row">
-                                                <label className="col-sm-3 col-form-label">Phase Start Date</label>
-                                                <div className="col-sm-9">
+                                            <Form.Group >
+                                                <label className="col-form-label">Phase Start Date</label>
+                                                <div >
                                                 <Form.Control
                                                         placeholder="Enter Phase Start Date"
                                                         type="date"
@@ -162,9 +162,9 @@ const AddProjectPhase = (props) => {
                                             </Form.Group>
                                         </div>
                                         <div className="col-md-6">
-                                            <Form.Group className="row">
-                                                <label className="col-sm-3 col-form-label">Phase End Date</label>
-                                                <div className="col-sm-9">
+                                            <Form.Group >
+                                                <label className="col-form-label">Phase End Date</label>
+                                                <div >
                                                 <Form.Control
                                                         placeholder="Enter Phase End Date"
                                                         type="date"
@@ -183,13 +183,14 @@ const AddProjectPhase = (props) => {
                                     </div>
 
                                     <button className="btn btn-gradient-info btn-rounded btn-fw" type='submit' value='submit' >Submit</button>
+                                    <button className="btn btn-gradient-info btn-rounded btn-fw" style={{ marginLeft: "50px" }} type='submit' value='submit' >Next</button>
                                 </form>
                             </div>
                         </div>
                     </div>
 
                 </div> 
-            </EditableModal>
+            {/* </EditableModal> */}
         </>
     )
 }
