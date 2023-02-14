@@ -5,7 +5,7 @@ import { getRolesApi } from '../../api/getRolesApi';
 import { useSelector } from "react-redux";
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import AddProjectPhase from '../projectPhase/AddProjectPhase';
-import { Link } from 'react-router-dom';
+
 const AddUser = (props) => {
   const history = useHistory();
   const initialValues = {
