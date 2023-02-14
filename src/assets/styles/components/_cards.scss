@@ -2,15 +2,15 @@
 
 .card {
   border: 0;
-  .card-body {
-    padding: $card-padding-y $card-padding-x;
-    @media(max-width: 767px) {
-      padding: 2rem 2rem;
-    }
-    + .card-body {
-      padding-top: 1rem;
-    }
-  }
+  // .card-body {
+  //   padding: $card-padding-y $card-padding-x;
+  //   @media(max-width: 767px) {
+  //     // padding:20px;
+  //   }
+  //   + .card-body {
+  //     padding-top: 1rem;
+  //   }
+  // }
   .card-title {
     color: $card-title-color;
     margin-bottom: .75rem;

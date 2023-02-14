@@ -283,7 +283,7 @@ const AddUser = (props) => {
                     </div>
                     <div className="col-md-6">
                       <Link to="/RolePermissions">
-                      <button className="btn btn-gradient-info btn-rounded btn-fw mt-5" type='submit' value='submit' >Add User</button>
+                      <button className="btn btn-gradient-info btn-rounded btn-fw mt-5" type='submit' value='submit' >Add Premissions</button>
                       </Link>
                     </div>
 
