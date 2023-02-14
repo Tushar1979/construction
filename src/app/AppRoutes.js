@@ -2,6 +2,7 @@ import React, { Component, Suspense, lazy } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Spinner from '../app/shared/Spinner';
 import Layout from './component/Layout/layout';
+import AddProjectPhase from './projectPhase/AddProjectPhase';
 
 const AllProject = lazy(() => import('./projectlist/AllProject'));
 const BehindSchedule = lazy(() => import('./projectlist/BehindSchedule'));
@@ -45,7 +46,12 @@ function AppRoutes() {
         <Route path="/projectlist/introuble"><Layout><InTrouble /></Layout></Route>
         <Route path="/projectlist/onhold"><Layout><OnHold /></Layout></Route>
         <Route path="/projectlist/ontrack"><Layout><OnTrack /></Layout></Route>
+<<<<<<< HEAD
+        <Route path="/addphase"><Layout><AddProjectPhase /></Layout></Route>
+
+=======
         <Route path="/RolePermissions" ><Layout><RolePermissions/></Layout></Route>
+>>>>>>> 52d8eca27695ccb2c35514a4dd9983efc9dba2f5
         {/* <Redirect to="/dashboard" /> */}
       </Switch>
     </Suspense>

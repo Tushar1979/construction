@@ -3,7 +3,7 @@ import { Form } from 'react-bootstrap';
 import { addUserApi } from '../../api/postAddUserApi';
 import { getRolesApi } from '../../api/getRolesApi';
 import { useSelector } from "react-redux";
-import { useHistory, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import AddProjectPhase from '../projectPhase/AddProjectPhase';
 import { Link } from 'react-router-dom';
 const AddUser = (props) => {
@@ -307,9 +307,13 @@ const AddUser = (props) => {
 
                   <div className="add-project-btns">
                     <button className="btn btn-gradient-info btn-rounded btn-fw" type='submit' value='submit' >Save</button>
-                    <button className="btn btn-gradient-info btn-rounded btn-fw" style={{ marginLeft: "50px" }} onClick={() => setdisplay(true)} type='submit' value='submit' >Next</button>
+                    <Link to="/addphase">
+                    <button className="btn btn-gradient-info btn-rounded btn-fw" style={{ marginLeft: "50px" }}
+                    //  onClick={() => setdisplay(true)}
+                      type='submit' value='submit' >Next</button>
+                    </Link>
                   </div>
-                  {display && <AddProjectPhase display={display} setdisplay={setdisplay} ></AddProjectPhase>}
+                  {/* {display && <AddProjectPhase display={display} setdisplay={setdisplay} ></AddProjectPhase>} */}
 
                 </form> :
 
@@ -454,9 +458,7 @@ const AddUser = (props) => {
                       </Form.Group>
                     </div>
                   </div>
-
-
-                  <button className="btn btn-gradient-info btn-rounded btn-fw" type='submit' value='submit' >Add User</button>
+                <button className="btn btn-gradient-info btn-rounded btn-fw" type='submit' value='submit' >Add User</button>
                 </form>
             }
 

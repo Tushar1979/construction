@@ -16,7 +16,7 @@ import { getProjectPhaseApi } from '../../api/getProjectPhaseApi';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
-import {  useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { getProjectDetail } from '../../redux/slices/ProjectNameSlice'
 
 import ProjectPhase from '../projectPhase/ProjectPhase';
@@ -33,7 +33,7 @@ const ProjectDetailPage = () => {
   const [show, setShow] = useState(false);
   const [userId, setUserId] = useState();
   const [designation, setDesignation] = useState()
- 
+
   const [userName, setUserName] = useState([])
   const [userRolesData, setUserRolesData] = useState([])
   const [designationUserName, setDesignationUserName] = useState([])
@@ -49,7 +49,7 @@ const ProjectDetailPage = () => {
   useEffect(() => {
     handleGetDesignatedUserApiCall()
   }, [designation])
-  
+
 
 
   const handleGetOneProjectApiCall = async (projectid) => {
@@ -57,8 +57,8 @@ const ProjectDetailPage = () => {
     setProjectOneData(result.data)
     dispatch(getProjectDetail(result.data))
     const ProjectName = result.data.projectname
-   
-    
+
+
     handleGetOneProjectUsersApiCall(ProjectName)
     handleGetProjectPhaseApiCall(ProjectName)
     setProjectName(ProjectName)
@@ -72,16 +72,16 @@ const ProjectDetailPage = () => {
   }
   const handleGetProjectPhaseApiCall = async (data) => {
     const result = await getProjectPhaseApi(data);
-    
-    
-    if(result?.status){
+
+
+    if (result?.status) {
       setProjectPhase(result.data)
-     
-    }else{
-      
+
+    } else {
+
       console.log(result?.data?.message);
     }
-   
+
 
     // if(result.data){
     //   setProjectPhase(result.data)
@@ -111,7 +111,7 @@ const ProjectDetailPage = () => {
 
   const handleGetDesignatedUserApiCall = async () => {
     const result = await getDesignatedUsersApi(designation);
-   
+
     setUserName(result.data)
   }
 
@@ -132,9 +132,9 @@ const ProjectDetailPage = () => {
 
   const DeleteAction = () => { console.log("delete now"); setShow(false); handleDeleteUseronProjectApiCall(ProjectName) }
   const TabelAction = (p) => <><div className='cursor-pointer'>
-    
+
     <svg onClick={(() => { setShow(true); setUserId(p.data.userid); })} fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="20px" height="20px">    <path d="M 14.984375 2.4863281 A 1.0001 1.0001 0 0 0 14 3.5 L 14 4 L 8.5 4 A 1.0001 1.0001 0 0 0 7.4863281 5 L 6 5 A 1.0001 1.0001 0 1 0 6 7 L 24 7 A 1.0001 1.0001 0 1 0 24 5 L 22.513672 5 A 1.0001 1.0001 0 0 0 21.5 4 L 16 4 L 16 3.5 A 1.0001 1.0001 0 0 0 14.984375 2.4863281 z M 6 9 L 7.7929688 24.234375 C 7.9109687 25.241375 8.7633438 26 9.7773438 26 L 20.222656 26 C 21.236656 26 22.088031 25.241375 22.207031 24.234375 L 24 9 L 6 9 z" /></svg>
-    
+
   </div></>
 
   const defaultColDef = useMemo(() => ({
@@ -148,14 +148,14 @@ const ProjectDetailPage = () => {
     { headerName: 'Name', field: 'nameofuser' },
     { headerName: 'Desgination', field: 'userdesignation' },
     { headerName: 'Status', field: 'employeestatus' },
-  
+
     // { headerName: 'Detail' ,field: 'Detail' ,cellRenderer:ViewDetailProjectPage,filter:false }   ,
   ]);
 
 
 
   return (<>
-  
+
     <div className='add-project'>
       <div className='row'>
         <div className="col-12 grid-margin">
@@ -328,7 +328,7 @@ const ProjectDetailPage = () => {
                         <div className='row'>
                           <div className="col-md-4">
                             <Form.Group className='form-box'>
-                              <label className=" col-form-label">Role</label>
+                              {/* <label className=" col-form-label">Make Role</label>
                               <div>
                                 <select className="form-control" onChange={(e) => setDesignation(e.target.value)}>
                                   <option value="" disabled selected>Select your option</option>
@@ -336,6 +336,19 @@ const ProjectDetailPage = () => {
                                     return <option value={value.rolename}>{value.rolename}</option>
                                   })}
                                 </select>
+                              </div> */}
+                              <label className="col-form-label">Add Role</label>
+                              <div >
+                                <Form.Control
+                                  type="text"
+                                  placeholder="Enter your Role"
+                                  name="name"
+                                  // value={formValues?.last_name}
+                                  // onChange={handleChange}
+                                />
+                                <p className="errorMsg">
+                                  {/* {formErrors.last_name} */}
+                                  </p>
                               </div>
                             </Form.Group>
                           </div>
@@ -382,9 +395,9 @@ const ProjectDetailPage = () => {
 
                 </Tab>
                 <Tab eventKey="profile" title="Phase">
-                  <ProjectPhase ProjectName={ProjectName} projectPhase={projectPhase} handleGetProjectPhaseApiCall={handleGetProjectPhaseApiCall}  />
+                  <ProjectPhase ProjectName={ProjectName} projectPhase={projectPhase} handleGetProjectPhaseApiCall={handleGetProjectPhaseApiCall} />
                 </Tab>
-            
+
               </Tabs>
 
             </div>
