@@ -356,7 +356,7 @@ const RolePermissions = () => {
           </div></div>
           
       </div>
-      <div className="add-project-btns float-right">
+      <div className="add-project-btns ">
      
 
     

@@ -4,7 +4,7 @@ import EditableModal from '../component/EditableModal';
 
 import { Form } from 'react-bootstrap';
 import { useSelector } from "react-redux";
-
+import AddProjectPhaseTask from '../projectPhaseTask/AddProjectPhaseTask'
 
 const AddProjectPhase = (props) => {
 
@@ -27,6 +27,7 @@ const AddProjectPhase = (props) => {
     const [formValues, setFormValues] = useState(initialValues || {})
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIsSubmit] = useState(false)
+    const[display,setdisplay]=useState(false)
 
     useEffect(() => {
 
@@ -37,7 +38,7 @@ const AddProjectPhase = (props) => {
                 if (result?.status) {
         
                     console.log(result)
-                    props.setdisplay(false)
+                    // props.setdisplay(false)
               
                     // handleGetUserApiCall()
              
@@ -97,13 +98,10 @@ const AddProjectPhase = (props) => {
  
     return (
         <>
-            {/* <EditableModal
-                show={props.display}
-                handleClose={() => props.setdisplay(false)}
-                handleShow={() => props.setdisplay(true)}
-            //   onClick={()=>handleEditUserApiCall(userid)}
-            //   Action="Save"
-            > */}
+      
+
+
+
                  <div>
                     <div className="col-12 grid-margin">
                         <div className="card">
@@ -183,15 +181,16 @@ const AddProjectPhase = (props) => {
                                     </div>
 
                                     <button className="btn btn-gradient-info btn-rounded btn-fw" type='submit' value='submit' >Submit</button>
-                                    <button className="btn btn-gradient-info btn-rounded btn-fw" style={{ marginLeft: "50px" }} type='submit' value='submit' >Next</button>
+                                    <button className="btn btn-gradient-info btn-rounded btn-fw" style={{ marginLeft: "50px" }} type='submit' value='submit' onClick={()=>{setdisplay(true)}} >Next</button>
+
                                 </form>
                             </div>
                         </div>
                     </div>
-
+                
                 </div> 
-            {/* </EditableModal> */}
-        </>
+                {display && <AddProjectPhaseTask  display={display} setdisplay={setdisplay}  ></AddProjectPhaseTask>}
+            </>
     )
 }
 

@@ -98,7 +98,7 @@ const ProjectPhaseDetailPage = () => {
   const handleGetOneProjectPhaseUsersApiCall = async (data) => {
     const result = await getOneProjectPhaseAssignUsersApi(phaseId);
     console.log(result)
-    setProjectOnePhaseUsersData(result.data)
+    setProjectOnePhaseUsersData()
   }
 
   const handleDeleteUserFromPhase=async()=>{

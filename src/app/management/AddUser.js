@@ -306,12 +306,13 @@ const AddUser = (props) => {
                   </div>
 
                   <div className="add-project-btns">
-                    <button className="btn btn-gradient-info btn-rounded btn-fw" type='submit' value='submit' >Save</button>
+
                     <Link to="/addphase">
-                    <button className="btn btn-gradient-info btn-rounded btn-fw" style={{ marginLeft: "50px" }}
+                    <button className="btn btn-gradient-info btn-rounded btn-fw m-1" 
                     //  onClick={() => setdisplay(true)}
                       type='submit' value='submit' >Next</button>
                     </Link>
+                    <button className="btn btn-gradient-info btn-rounded btn-fw" type='submit' value='submit' >Save</button>
                   </div>
                   {/* {display && <AddProjectPhase display={display} setdisplay={setdisplay} ></AddProjectPhase>} */}
 
