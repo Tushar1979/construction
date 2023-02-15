@@ -1,10 +1,9 @@
 import React,{useEffect,useState} from 'react'
 import EditableModal from '../component/EditableModal';
 // import { editUserApi } from '../../api/putUserApi';
-
 import { Form } from 'react-bootstrap';
 import { useSelector } from "react-redux";
-
+import Select from 'react-select'
 
 const AddProjectPhaseTask = (props) => {
 
@@ -24,6 +23,12 @@ const AddProjectPhaseTask = (props) => {
     const [formValues, setFormValues] = useState(initialValues || {})
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIsSubmit] = useState(false)
+
+    const options = [
+        { value: 'Project Manager', label: 'Project Manager' },
+        { value: 'Principle Arcitect', label: 'Principle Arcitect' },
+        { value: 'Engineer', label: 'Engineer' }
+      ]
 
     useEffect(() => {
 
@@ -140,6 +145,8 @@ const AddProjectPhaseTask = (props) => {
                                             </Form.Group>      
                                         </div>
                                     </div>
+
+
                                     <div className="row">
                                         <div className="col-md-6">
                                             <Form.Group className="row">
@@ -175,8 +182,29 @@ const AddProjectPhaseTask = (props) => {
                                                 </div>
                                             </Form.Group>      
                                         </div>
+                                        
 
                                       
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-md-6">
+                                            <Form.Group className="row">
+                                                <label className="col-sm-3 col-form-label">Assign User</label>
+                                                <div className="col-sm-9">
+                                                <Select options={options} />
+                                                {/* <Form.Control
+                                                        placeholder="Assign User"
+                                                        type=""
+                                                        name='phasestartdate'
+                                                        
+                                                        // value={formValues?.startdate}
+                                                        // max={formValues?.enddate}
+                                                        // onChange={handleChange}
+                                                    /> */}
+                                                     <p className="errorMsg">{formErrors.startdate}</p>
+                                                </div>
+                                            </Form.Group>
+                                        </div>
                                     </div>
 
                                     <button className="btn btn-gradient-info btn-rounded btn-fw" type='submit' value='submit' >Submit</button>

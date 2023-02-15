@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import useAuth from '../component/hooks/useAuth';
 import { addProjectApi } from '../../api/postAddProjectApi'
 import { useHistory } from 'react-router-dom';
-
+import Select from "react-select";
 
 
 const AddProject = () => {
@@ -22,6 +22,26 @@ const AddProject = () => {
     "enddate": '',
     "estimatedcost": ''
   }
+
+  const State = [
+    { value: "Madhya Pradesh", label: "Madhya Pradesh" },
+    { value: "Maharastra", label: "Maharastra" },
+    { value: "Gujrat", label: "Gujrat" },
+    { value: "Uttar Pradesh", label: "Uttar Pradesh" }
+  ];
+
+  const city = [
+    { value: "Indore", label: "Indore" },
+    { value: "Mumbai", label: "Mumbai" },
+    { value: "Ahamdabad", label: "Ahamdabad" },
+    { value: "kanpur", label: "kanpur" }
+  ];
+
+  const pincode =[
+    { value: 400001, label: 400001},
+    { value: 487770, label: 487770 }
+  ]
+
 
   const [formValues, setFormValues] = useState(initialValues || {})
   const [formErrors, setFormErrors] = useState({})
@@ -205,19 +225,21 @@ const AddProject = () => {
                   </Form.Group>
                 </div>
                 <div className="col-md-6">
-                  <Form.Group >
-                    <label className=" col-form-label">City</label>
+                <Form.Group>
+                    <label className="col-form-label">Estimated Cost</label>
                     <div className="col-sm-9 p-0">
                       <Form.Control
                         type="text"
-                        placeholder="Enter Owner Name"
-                        name="city"
-                        value={formValues?.city}
+                        placeholder="Enter Estimated Cost"
+                        name="estimatedcost"
+                        value={formValues?.estimatedcost}
                         onChange={handleChange}
                       />
-                      <p className="errorMsg">{formErrors.city}</p>
+                      <p className="errorMsg">{formErrors.estimatedcost}</p>
                     </div>
                   </Form.Group>
+
+
                 </div>
               </div>
               <div className="row">
@@ -258,17 +280,30 @@ const AddProject = () => {
               </div>
               <div className="row">
                 <div className="col-md-6">
-                  <Form.Group>
-                    <label className="col-form-label">Estimated Cost</label>
+                 
+                  <Form.Group >
+                    <label className=" col-form-label">City</label>
                     <div className="col-sm-9 p-0">
-                      <Form.Control
-                        type="text"
-                        placeholder="Enter Estimated Cost"
-                        name="estimatedcost"
-                        value={formValues?.estimatedcost}
-                        onChange={handleChange}
-                      />
-                      <p className="errorMsg">{formErrors.estimatedcost}</p>
+                    <Select options={city} />
+                      {/* <p className="errorMsg">{formErrors.city}</p> */}
+                    </div>
+                  </Form.Group>
+                </div>
+                <div className="col-md-6">
+                <Form.Group >
+                    <label className=" col-form-label">State</label>
+                    <div className="col-sm-9 p-0">
+                    <Select options={State} />
+                      {/* <p className="errorMsg">{formErrors.city}</p> */}
+                    </div>
+                  </Form.Group>
+                </div>
+                <div className="col-md-6">
+                <Form.Group >
+                    <label className=" col-form-label">Pincode</label>
+                    <div className="col-sm-9 p-0">
+                    <Select options={pincode} />
+                      {/* <p className="errorMsg">{formErrors.city}</p> */}
                     </div>
                   </Form.Group>
                 </div>

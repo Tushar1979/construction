@@ -10,12 +10,8 @@ const RolePermissions = () => {
   const checkboxes = [1, 2, 3, 4, 5];
   const [checked, setChecked] = React.useState([]);
 
-  // Function to handle all checkbox check
+  
   function handleCheckboxesCheckAll(checked, isChecked) {
-
-    // if "isChecked" is "true" set "setChecked" 
-    // to checkboxes array or set it to empty array.
-
     setChecked(isChecked ? checkboxes : []);
   }
 
