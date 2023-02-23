@@ -23,12 +23,15 @@ export default function Login(props) {
   const handleLoginApiCall = async (d) => {
 
     const result = await loginApi(d);
+   console.log(result)
+   
+
     if (result?.status) {
       const token = result.data.token;
       localStorage.setItem('token', token);
       console.log(result)
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      dispatch(getUserDetail(result.data.user))
+      dispatch(getUserDetail(result.data))
       history.push("/");
     }
     else {

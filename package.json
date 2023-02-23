@@ -11,6 +11,7 @@
     "bootstrap": "^4.3.1",
     "chart.js": "^2.8.0",
     "compass-mixins": "^0.12.10",
+    "country-state-city": "^3.1.2",
     "jwt-decode": "^3.1.2",
     "react": "^16.9.0",
     "react-bootstrap": "^1.6.6",
@@ -26,6 +27,7 @@
     "react-select": "^5.7.0",
     "react-toastify": "^9.1.1",
     "redux": "^4.2.0",
+    "redux-persist": "^6.0.0",
     "rsuite": "^5.26.1",
     "sass": "^1.55.0"
   },

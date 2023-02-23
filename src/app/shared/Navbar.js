@@ -30,8 +30,7 @@ function Navbar() {
 
 
   const userDetail = useSelector((state) => state.home.userDetail);
-
-
+ console.log(userDetail?.role)
 
   return (<>
     <nav className="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -56,7 +55,7 @@ function Navbar() {
 
         <ul className="navbar-nav navbar-nav-right">
 
-        {userDetail?.designation === "Admin" || userDetail?.designation === "Superadmin" ?
+        {userDetail?.role == "Admin"  ?
             <div className='navbar-nav '>
               <Link to="/addProject" className=' text-white text-decoration-none'>
                 <button type="button" className="btn btn-gradient-info btn-rounded btn-fw ">   Add Project</button></Link>
@@ -193,7 +192,7 @@ function Navbar() {
                   <span className="availability-status online"></span>
                 </div>
                 <div className="nav-profile-text">
-                  <p className="mb-1 text-black">{userDetail?.name}</p>
+                  <p className="mb-1 text-black">{userDetail?.user?.first_name}</p>
                 </div>
               </Dropdown.Toggle>
 

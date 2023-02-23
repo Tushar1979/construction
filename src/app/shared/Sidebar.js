@@ -87,7 +87,7 @@ const Sidebar = () => {
   }
   let formate = userDetail?.designation
   formate?.split(' ')
-  console.log(formate, "chek dta");
+  
 
 
   return (<div>
@@ -100,7 +100,7 @@ const Sidebar = () => {
               <span className="login-status online"></span> {/* change to offline or busy as needed */}
             </div>
             <div className="nav-profile-text">
-              <span className="font-weight-bold mb-2">{userDetail?.designation} </span>
+              <span className="font-weight-bold mb-2">{userDetail?.role} </span>
               {/* <span className="text-secondary text-small">{userDetail?.designation}</span> */}
             </div>
             {/* <i className="mdi mdi-bookmark-check text-success nav-profile-badge"></i> */}

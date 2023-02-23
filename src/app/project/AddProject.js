@@ -6,7 +6,7 @@ import useAuth from '../component/hooks/useAuth';
 import { addProjectApi } from '../../api/postAddProjectApi'
 import { useHistory } from 'react-router-dom';
 import Select from "react-select";
-
+import { Country, State, City }  from 'country-state-city';
 
 const AddProject = () => {
 
@@ -22,6 +22,11 @@ const AddProject = () => {
     "enddate": '',
     "estimatedcost": ''
   }
+
+
+  console.log(Country.getAllCountries())
+console.log(State.getAllStates())
+
 
   const State = [
     { value: "Madhya Pradesh", label: "Madhya Pradesh" },
@@ -279,6 +284,15 @@ const AddProject = () => {
                 </div>
               </div>
               <div className="row">
+              <div className="col-md-6">
+                <Form.Group >
+                    <label className=" col-form-label">State</label>
+                    <div className="col-sm-9 p-0">
+                    <Select options={State} />
+                      {/* <p className="errorMsg">{formErrors.city}</p> */}
+                    </div>
+                  </Form.Group>
+                </div>
                 <div className="col-md-6">
                  
                   <Form.Group >
@@ -289,15 +303,7 @@ const AddProject = () => {
                     </div>
                   </Form.Group>
                 </div>
-                <div className="col-md-6">
-                <Form.Group >
-                    <label className=" col-form-label">State</label>
-                    <div className="col-sm-9 p-0">
-                    <Select options={State} />
-                      {/* <p className="errorMsg">{formErrors.city}</p> */}
-                    </div>
-                  </Form.Group>
-                </div>
+           
                 <div className="col-md-6">
                 <Form.Group >
                     <label className=" col-form-label">Pincode</label>

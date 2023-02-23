@@ -2,6 +2,8 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import jwtDecode from 'jwt-decode';
 
+
+
 const useAuth = () => {
 	const [userInfo, setUserInfo] = useState();
 	const [token, setToken] = useState(localStorage.getItem('token'));
@@ -32,6 +34,7 @@ const useAuth = () => {
 
 			if (decodedToken) {
 				setUserInfo(decodedToken);
+				
 				
 				axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
 			} else {

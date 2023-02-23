@@ -8,21 +8,21 @@ import useAuth from './component/hooks/useAuth'
 import useHttp from './component/hooks/useAxios';
 import { useDispatch } from 'react-redux'
 import { getUserDetail} from '../redux/slices/HomeSlice'
-axios.defaults.baseURL = 'http://192.168.29.40:8000/';
+axios.defaults.baseURL = 'http://192.168.1.211:8000/';
 
 
 import 'react-toastify/dist/ReactToastify.css';
 
 function App  (){
 
-  const {userInfo} = useAuth();
+  // const {userInfo} = useAuth();
   const useaxios = useHttp()
   const dispatch = useDispatch();
   
-  useEffect(()=>{
+  // useEffect(()=>{
   
-    dispatch(getUserDetail(userInfo))
-  },[userInfo])
+  //   dispatch(getUserDetail(userInfo))
+  // },[userInfo])
   
   // const histry = useHistory()
   // console.log(userInfo)
